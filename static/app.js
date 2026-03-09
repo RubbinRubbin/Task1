@@ -9,15 +9,19 @@ const loginScreen   = document.getElementById('login-screen');
 const appScreen     = document.getElementById('app-screen');
 const loginForm     = document.getElementById('login-form');
 const loginError    = document.getElementById('login-error');
-const logoutBtn     = document.getElementById('logout-btn');
-const createForm    = document.getElementById('create-form');
-const createError   = document.getElementById('create-error');
-const newTitle      = document.getElementById('new-title');
-const newDesc       = document.getElementById('new-desc');
-const taskList      = document.getElementById('task-list');
-const emptyState    = document.getElementById('empty-state');
-const filterBtns    = document.querySelectorAll('.filter-btn');
-const modalOverlay  = document.getElementById('modal-overlay');
+const logoutBtn           = document.getElementById('logout-btn');
+const newTaskBtn          = document.getElementById('new-task-btn');
+const createModalOverlay  = document.getElementById('create-modal-overlay');
+const createModalClose    = document.getElementById('create-modal-close');
+const createModalCancel   = document.getElementById('create-modal-cancel');
+const createForm          = document.getElementById('create-form');
+const createError         = document.getElementById('create-error');
+const newTitle            = document.getElementById('new-title');
+const newDesc             = document.getElementById('new-desc');
+const taskList            = document.getElementById('task-list');
+const emptyState          = document.getElementById('empty-state');
+const filterBtns          = document.querySelectorAll('.filter-btn');
+const modalOverlay        = document.getElementById('modal-overlay');
 const modalClose    = document.getElementById('modal-close');
 const modalCancel   = document.getElementById('modal-cancel');
 const editForm      = document.getElementById('edit-form');
@@ -202,14 +206,32 @@ createForm.addEventListener('submit', async (e) => {
   });
 
   if (res && res.id) {
-    newTitle.value = '';
-    newDesc.value = '';
+    closeCreateModal();
     loadTasks();
   } else if (res && res.detail) {
     createError.textContent = Array.isArray(res.detail) ? res.detail[0].msg : res.detail;
     createError.classList.remove('hidden');
   }
 });
+
+// --- Create modal ---
+function openCreateModal() {
+  newTitle.value = '';
+  newDesc.value = '';
+  createError.classList.add('hidden');
+  createModalOverlay.classList.remove('hidden');
+  newTitle.focus();
+}
+
+function closeCreateModal() {
+  createModalOverlay.classList.add('hidden');
+}
+
+newTaskBtn.addEventListener('click', openCreateModal);
+document.getElementById('empty-new-btn').addEventListener('click', openCreateModal);
+createModalClose.addEventListener('click', closeCreateModal);
+createModalCancel.addEventListener('click', closeCreateModal);
+createModalOverlay.addEventListener('click', (e) => { if (e.target === createModalOverlay) closeCreateModal(); });
 
 // --- Filters ---
 filterBtns.forEach(btn => {

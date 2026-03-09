@@ -33,30 +33,14 @@
     <header>
       <div class="header-inner">
         <h1>Task Manager</h1>
-        <button id="logout-btn" class="btn btn-ghost">Logout</button>
+        <div class="header-actions">
+          <button id="new-task-btn" class="btn btn-primary">+ Nuovo Task</button>
+          <button id="logout-btn" class="btn btn-ghost">Logout</button>
+        </div>
       </div>
     </header>
 
     <main>
-      <!-- Crea task -->
-      <section class="card create-card">
-        <h2>Nuovo Task</h2>
-        <form id="create-form">
-          <div class="row">
-            <div class="field flex-1">
-              <label>Titolo <span class="required">*</span></label>
-              <input type="text" id="new-title" placeholder="Es. Comprare il pane" maxlength="200" />
-            </div>
-          </div>
-          <div class="field">
-            <label>Descrizione <span class="optional">(opzionale)</span></label>
-            <textarea id="new-desc" placeholder="Aggiungi una descrizione..." maxlength="1000" rows="2"></textarea>
-          </div>
-          <div id="create-error" class="error hidden"></div>
-          <button type="submit" class="btn btn-primary">+ Aggiungi Task</button>
-        </form>
-      </section>
-
       <!-- Lista task -->
       <section class="card tasks-card">
         <div class="tasks-header">
@@ -72,9 +56,35 @@
         <div id="empty-state" class="empty hidden">
           <span>📋</span>
           <p>Nessun task trovato</p>
+          <button id="empty-new-btn" class="btn btn-primary" style="margin-top:1rem">+ Crea il primo task</button>
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- MODAL NUOVO TASK -->
+  <div id="create-modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Nuovo Task</h3>
+        <button id="create-modal-close" class="btn-icon">✕</button>
+      </div>
+      <form id="create-form">
+        <div class="field">
+          <label>Titolo <span class="required">*</span></label>
+          <input type="text" id="new-title" placeholder="Es. Comprare il pane" maxlength="200" />
+        </div>
+        <div class="field">
+          <label>Descrizione <span class="optional">(opzionale)</span></label>
+          <textarea id="new-desc" placeholder="Aggiungi una descrizione..." maxlength="1000" rows="3"></textarea>
+        </div>
+        <div id="create-error" class="error hidden"></div>
+        <div class="modal-actions">
+          <button type="button" id="create-modal-cancel" class="btn btn-ghost">Annulla</button>
+          <button type="submit" class="btn btn-primary">Aggiungi</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- MODAL MODIFICA -->
