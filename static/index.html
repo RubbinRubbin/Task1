@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-screen" class="screen">
+    <div class="login-card">
+      <h1>Task Manager</h1>
+      <p class="subtitle">Accedi per gestire i tuoi task</p>
+      <form id="login-form">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="username" value="admin" autocomplete="username" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="password" value="admin" autocomplete="current-password" />
+        </div>
+        <div id="login-error" class="error hidden"></div>
+        <button type="submit" class="btn btn-primary btn-full">Accedi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app-screen" class="screen hidden">
+    <header>
+      <div class="header-inner">
+        <h1>Task Manager</h1>
+        <button id="logout-btn" class="btn btn-ghost">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Crea task -->
+      <section class="card create-card">
+        <h2>Nuovo Task</h2>
+        <form id="create-form">
+          <div class="row">
+            <div class="field flex-1">
+              <label>Titolo <span class="required">*</span></label>
+              <input type="text" id="new-title" placeholder="Es. Comprare il pane" maxlength="200" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Descrizione <span class="optional">(opzionale)</span></label>
+            <textarea id="new-desc" placeholder="Aggiungi una descrizione..." maxlength="1000" rows="2"></textarea>
+          </div>
+          <div id="create-error" class="error hidden"></div>
+          <button type="submit" class="btn btn-primary">+ Aggiungi Task</button>
+        </form>
+      </section>
+
+      <!-- Lista task -->
+      <section class="card tasks-card">
+        <div class="tasks-header">
+          <h2>I tuoi Task</h2>
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all">Tutti</button>
+            <button class="filter-btn" data-filter="false">Da fare</button>
+            <button class="filter-btn" data-filter="true">Completati</button>
+          </div>
+        </div>
+
+        <div id="task-list"></div>
+        <div id="empty-state" class="empty hidden">
+          <span>📋</span>
+          <p>Nessun task trovato</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL MODIFICA -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Modifica Task</h3>
+        <button id="modal-close" class="btn-icon">✕</button>
+      </div>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id" />
+        <div class="field">
+          <label>Titolo <span class="required">*</span></label>
+          <input type="text" id="edit-title" maxlength="200" />
+        </div>
+        <div class="field">
+          <label>Descrizione <span class="optional">(opzionale)</span></label>
+          <textarea id="edit-desc" maxlength="1000" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="edit-completed" />
+            <span>Completato</span>
+          </label>
+        </div>
+        <div id="edit-error" class="error hidden"></div>
+        <div class="modal-actions">
+          <button type="button" id="modal-cancel" class="btn btn-ghost">Annulla</button>
+          <button type="submit" class="btn btn-primary">Salva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
