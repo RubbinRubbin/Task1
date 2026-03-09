@@ -127,7 +127,7 @@ function renderTasks(tasks) {
       : '<span class="badge badge-pending">Da fare</span>';
 
     item.innerHTML = `
-      <div class="task-check ${task.completed ? 'done' : ''}" title="${task.completed ? 'Già completato' : 'Segna come completato'}" data-action="complete"></div>
+      <div class="task-check ${task.completed ? 'done' : ''}" title="${task.completed ? 'Segna come da fare' : 'Segna come completato'}" data-action="complete"></div>
       <div class="task-body">
         <div class="task-title ${task.completed ? 'done' : ''}">${escHtml(task.title)}${badge}</div>
         ${task.description ? `<div class="task-desc">${escHtml(task.description)}</div>` : ''}
@@ -157,8 +157,11 @@ taskList.addEventListener('click', async (e) => {
   const action = actionEl.dataset.action;
 
   if (action === 'complete') {
-    if (actionEl.classList.contains('done')) return;
-    await apiFetch(`/tasks/${id}/complete`, { method: 'PATCH' });
+    const isDone = actionEl.classList.contains('done');
+    await apiFetch(`/tasks/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ completed: !isDone }),
+    });
     loadTasks();
   }
 
