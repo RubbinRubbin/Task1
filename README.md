@@ -14,38 +14,39 @@ Applicazione web per la gestione di task, con **frontend** incluso e **REST API*
 
 - Python 3.10+
 
-## Setup
+## Avvio rapido
+
+> **Prima installazione** — da fare una volta sola:
 
 ```bash
-# Clona il repository e entra nella cartella
-cd Task1
-
-# Crea un virtual environment
+# 1. Crea il virtual environment
 python -m venv venv
 
-# Attiva il virtual environment
-# Windows
+# 2. Attivalo  (Windows)
 venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
 
-# Installa le dipendenze
+# 3. Installa le dipendenze
 pip install -r requirements.txt
-
-# (Opzionale) Copia e personalizza le variabili d'ambiente
-cp .env.example .env
 ```
 
-## Avvio
+> **Ogni volta che vuoi avviare il progetto:**
 
 ```bash
+# 1. Attiva il virtual environment  (Windows)
+venv\Scripts\activate
+
+# 2. Avvia il server
 uvicorn app.main:app --reload
 ```
 
+Poi apri il browser su:
+
 | URL | Descrizione |
 |-----|-------------|
-| `http://127.0.0.1:8000/` | **Frontend web** (interfaccia grafica) |
+| `http://127.0.0.1:8000/` | **Applicazione web** (interfaccia grafica) |
 | `http://127.0.0.1:8000/docs` | Swagger UI (documentazione API interattiva) |
+
+Credenziali default: **admin** / **admin**
 
 ## Autenticazione
 
