@@ -102,7 +102,6 @@ curl -X DELETE http://127.0.0.1:8000/tasks/1 \
 ```
 Task1/
 ├── app/
-│   ├── __init__.py
 │   ├── main.py           # Entry point FastAPI + serve frontend
 │   ├── config.py          # Configurazione (env vars)
 │   ├── database.py        # Engine e sessione SQLAlchemy
@@ -111,7 +110,6 @@ Task1/
 │   ├── crud.py            # Operazioni database
 │   ├── auth.py            # Logica JWT
 │   └── routers/
-│       ├── __init__.py
 │       ├── tasks.py       # Endpoints task
 │       └── auth.py        # Endpoint autenticazione
 ├── static/
