@@ -1,7 +1,5 @@
 # Task Manager
 
-Applicazione web per la gestione di task, con **frontend** incluso e **REST API** realizzata con **Python**, **FastAPI** e **SQLite**.
-
 ## Funzionalità
 
 - Interfaccia web per creare, visualizzare, modificare ed eliminare task
